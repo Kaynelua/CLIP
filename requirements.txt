@@ -4,3 +4,4 @@ torchvision==0.9.1+cu111
 ftfy
 regex
 tqdm
+opencv-python

@@ -39,9 +39,10 @@ with torch.no_grad():
     #sortedMatrix,indices = torch.sort(distMatrix,dim=0)
     #print(indices)
     distMatrix = distance.compute_distance_matrix(image_features,image_features,metric="cosine")
-    sortedMatrix,indices = torch.sort(distMatrix,dim=0)
-    for idx,orderedIndices in enumerate(indices) :
-        print("Row:" , idx, orderedIndices[:10])
+    reidtools.visualize_ranked_results(distmat=distMatrix.to("cpu").numpy())
+    #sortedMatrix,indices = torch.sort(distMatrix,dim=0)
+    #for idx,orderedIndices in enumerate(indices) :
+    #    print("Row:" , idx, orderedIndices[:10])
 
     
     #logits_per_image, logits_per_text = model(image, text)
