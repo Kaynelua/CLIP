@@ -3,6 +3,7 @@ import clip
 from PIL import Image
 from torchreid import distance
 from torchreid import reidtools
+
 import os
 import tqdm
 
@@ -29,17 +30,15 @@ imageMatrix = imageMatrix.to(device)
 #image_array = torch.stack( (preprocess(Image.open("CLIP.png")),preprocess(Image.open("image059.jpg"))) ).to(device)
 #print(image_array.size())
 
-text = clip.tokenize(["an image of a forest", "an image of a building", "an image of a coast", "an image of a conference room"]).to(device)
+queryList = ["image of forest", "image of short buildings", "image of tall buildings", "image of a coast", "image of a conference room", "People walking on the beach"]
+text = clip.tokenize(queryList).to(device)
 
 with torch.no_grad():
     print(imageMatrix.size())
     image_features = model.encode_image(imageMatrix) #image_features = model.encode_image(image)
     text_features = model.encode_text(text)
-    #distMatrix = distance.compute_distance_matrix(image_features,text_features,metric="cosine")
-    #sortedMatrix,indices = torch.sort(distMatrix,dim=0)
-    #print(indices)
-    distMatrix = distance.compute_distance_matrix(image_features,image_features,metric="cosine")
-    reidtools.visualize_ranked_results(distmat=distMatrix.to("cpu").numpy())
+    distMatrix = distance.compute_distance_matrix(text_features,image_features,metric="cosine")
+    reidtools.visualize_ranked_results_text(distmat=distMatrix.to("cpu").numpy(),queryList = queryList)
     #sortedMatrix,indices = torch.sort(distMatrix,dim=0)
     #for idx,orderedIndices in enumerate(indices) :
     #    print("Row:" , idx, orderedIndices[:10])
