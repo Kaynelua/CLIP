@@ -1,0 +1,3 @@
+To run container:
+docker run -it --rm -v /home/uc-pc/Desktop/SceneRetrieval/CLIP/:/home/CLIP -w /home/CLIP clip_cuda11_1:1.0 /bin/bash
+
