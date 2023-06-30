@@ -4,6 +4,7 @@ FROM nvcr.io/nvidia/cuda:11.1.1-cudnn8-devel-ubuntu20.04
 
 ENV cwd="/home/"
 ENV FORCE_CUDA="1"
+ENV TORCH_CUDA_ARCH_LIST="7.0 7.5 8.0 8.6+PTX"
 WORKDIR $cwd
 
 ENV TZ=Asia/Singapore

@@ -1,3 +1,6 @@
 To run container:
 docker run -it --rm -v /home/uc-pc/Desktop/SceneRetrieval/CLIP/:/home/CLIP -w /home/CLIP clip_cuda11_1:1.0 /bin/bash
 
+Bash Command to relabel image of folders in "0000/" folder to "test/" folder in the numerical order
+num=4500; for i in 0000/*.jpg; do cp "$i" "test/$(printf '%08d' $num).${i#*.}"; ((num++)); done
+
