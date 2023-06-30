@@ -8,7 +8,7 @@ import os
 import tqdm
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
+model, preprocess = clip.load("ViT-B-32.pt", device=device) #clip.load("ViT-B/32", device=device)
 
 #image = preprocess(Image.open("CLIP.png")).unsqueeze(0).to(device)
 #print(preprocess(Image.open("CLIP.png")).size())
